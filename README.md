@@ -1,65 +1,68 @@
-# Qwik City App ⚡️
+# Découverte de Qwik
 
-- [Qwik Docs](https://qwik.builder.io/)
-- [Discord](https://qwik.builder.io/chat)
-- [Qwik GitHub](https://github.com/BuilderIO/qwik)
-- [@QwikDev](https://twitter.com/QwikDev)
-- [Vite](https://vitejs.dev/)
+## Les routes
 
----
+Les templates des différentes routes se trouvent dans le dossier 'src/routes'
 
-## Project Structure
+### La Page d'accueil
+Il s'agit du fichier 'src/routes/index.tsx'
 
-This project is using Qwik with [QwikCity](https://qwik.builder.io/qwikcity/overview/). QwikCity is just an extra set of tools on top of Qwik to make it easier to build a full site, including directory-based routing, layouts, and more.
+### Les autres pages
+Des dossiers peuvent être créer dans 'src/routes', le dossier doit comporter le chemin vers la page (le dossier 'about' sera atteignable avec l'url 'xxx/about').
 
-Inside your project, you'll see the following directory structure:
+Les fichiers doivent s'appeler index.tsx.
+
+## Contenu des fichiers index.tsx
+
+* #### components$
+
+```import { component$ } from '@builder.io/qwik';```
+
+Pour créer les éléments de ce composant:
 
 ```
-├── public/
-│   └── ...
-└── src/
-    ├── components/
-    │   └── ...
-    └── routes/
-        └── ...
+export default component$(() => {
+  return (
+    <div>
+      <h2>Quick test of Qwik</h2>
+    </div>
+  );
+});
+```
+* #### DocumentHead
+
+```import { DocumentHead } from "@builder.io/qwik-city";```
+
+Permet de créer les éléments de la balise <head> de la page
+
+```
+export const head: DocumentHead = {
+    title: 'Qwik Discover - Accueil ',
+    meta: [
+    {
+        name: 'description',
+        content: 'Training on qwik framework',
+    },
+    ],
+    links: [
+    {
+        rel: 'stylesheet',
+        href: 'stylesheet.com/style.css'
+    }
+    ]
+};
 ```
 
-- `src/routes`: Provides the directory based routing, which can include a hierarchy of `layout.tsx` layout files, and an `index.tsx` file as the page. Additionally, `index.ts` files are endpoints. Please see the [routing docs](https://qwik.builder.io/qwikcity/routing/overview/) for more info.
+DocumenHead sera géré par le fichier 'components/router-head/router-head.tsx' afin de donner tout le contenu à aux balise 'head'
 
-- `src/components`: Recommended directory for components.
+* #### Styles
+Le fichier css est dans le même dossier que le composant où il va être utilisé.
 
-- `public`: Any static assets, like images, can be placed in the public directory. Please see the [Vite public directory](https://vitejs.dev/guide/assets.html#the-public-directory) for more info.
+```import AboutStyles from './about.css?inline'```
 
-## Add Integrations and deployment
+il doit ensuite être utilisé dans la fonction `export defaut component$`;
 
-Use the `npm run qwik add` command to add additional integrations. Some examples of integrations include: Cloudflare, Netlify or Express server, and the [Static Site Generator (SSG)](https://qwik.builder.io/qwikcity/guides/static-site-generation/).
+2 possibilités :
 
-```shell
-npm run qwik add # or `yarn qwik add`
-```
-
-## Development
-
-Development mode uses [Vite's development server](https://vitejs.dev/). During development, the `dev` command will server-side render (SSR) the output.
-
-```shell
-npm start # or `yarn start`
-```
-
-> Note: during dev mode, Vite may request a significant number of `.js` files. This does not represent a Qwik production build.
-
-## Preview
-
-The preview command will create a production build of the client modules, a production build of `src/entry.preview.tsx`, and run a local server. The preview server is only for convenience to locally preview a production build, and it should not be used as a production server.
-
-```shell
-npm run preview # or `yarn preview`
-```
-
-## Production
-
-The production build will generate client and server modules by running both client and server build commands. Additionally, the build command will use Typescript to run a type check on the source code.
-
-```shell
-npm run build # or `yarn build`
-```
+* `useStyles$(AboutStyles)` : Appliquera le css à tout les éléments de la page
+* `useStylesScoped$(ContactStyles)` : Appliquera le css uniquement aux élément de ce composant
