@@ -1,0 +1,19 @@
+:root {
+  --theme-darkblue: #200b50dc;
+  --theme-goldenyellow: #a18202;
+}
+
+body {
+  font-family: 'Caveat';
+  background: #eee;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  min-height: 100vh;
+}
+h1, h2, h3, h4 {
+  font-family: 'Ubuntu';
+  font-weight: bold;
+  font-size: 2em;
+  margin: 0;
+}
