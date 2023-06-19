@@ -30,9 +30,13 @@
     "eslint": "8.41.0",
     "eslint-plugin-qwik": "^1.1.5",
     "prettier": "2.8.8",
+    "sass": "^1.63.4",
     "typescript": "5.0.4",
     "undici": "5.22.1",
     "vite": "4.3.9",
     "vite-tsconfig-paths": "4.2.0"
+  },
+  "dependencies": {
+    "reset-css": "^5.0.1"
   }
 }
