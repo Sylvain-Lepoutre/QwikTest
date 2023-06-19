@@ -11,17 +11,32 @@ export default component$(() => {
 
   const course = useSignal('states')
 
-  const lesson =useStore({ name: 'Qwik', number: 6})
+  const lesson = useStore({ name: 'Qwik', number: 6 })
   useStylesScoped$(IndexStyles)
-  return (
-    <div>
-      <h2>Quick test of Qwik</h2>
-      <p>J'apprends les {course.value}</p>
-      <p>Grace au leçon {lesson.name} numéro {lesson.number}</p>
 
-      <button onClick$={() => course.value = 'links'}>Click</button>
-      <button onClick$={() => lesson.number = 5}>Click</button>
-    </div>
+  const courses = useStore([
+    { id: 1, name: "Hydratation vs Resumability" },
+    { id: 2, name: "Creating a new Qwik App" },
+    { id: 3, name: "Page components and routes" }
+  ])
+  return (
+    <>
+      <div>
+        <h2>Quick test of Qwik</h2>
+        <p>J'apprends les {course.value}</p>
+        <p>Grace au leçon {lesson.name} numéro {lesson.number}</p>
+        {courses.map(item => (
+          <p key={item.id}>{item.name}</p>
+        ))}
+      </div>
+      <div>
+        <button onClick$={() => course.value = 'links'}>Click</button>
+        <button onClick$={() => lesson.number = 5}>Click</button>
+        <button onClick$={() => courses.pop()}>Retirer un item</button>
+
+      </div>
+    </>
+
   );
 });
 

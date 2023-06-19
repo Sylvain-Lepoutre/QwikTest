@@ -137,4 +137,4 @@ Utilisation dans le template du component
 
 Modification par exemple supprimer un item
 
-`<button onClick={() => nomTableau.pop()}>Retirer un item</button>`
+`<button onClick$={() => nomTableau.pop()}>Retirer un item</button>`
