@@ -2,13 +2,25 @@
  */
 
 
-import { component$ } from '@builder.io/qwik';
+import { component$, useSignal, useStore, useStylesScoped$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 
+import IndexStyles from './index.css?inline';
+
 export default component$(() => {
+
+  const course = useSignal('states')
+
+  const lesson =useStore({ name: 'Qwik', number: 6})
+  useStylesScoped$(IndexStyles)
   return (
     <div>
       <h2>Quick test of Qwik</h2>
+      <p>J'apprends les {course.value}</p>
+      <p>Grace au leçon {lesson.name} numéro {lesson.number}</p>
+
+      <button onClick$={() => course.value = 'links'}>Click</button>
+      <button onClick$={() => lesson.number = 5}>Click</button>
     </div>
   );
 });

@@ -4,6 +4,7 @@ import { RouterHead } from './components/router-head/router-head';
 import { Header } from './components/header/header';
 
 import './global.css';
+import { Footer } from './components/footer/footer';
 
 export default component$(() => {
   /**
@@ -24,6 +25,7 @@ export default component$(() => {
         <Header />
         <RouterOutlet />
         <ServiceWorkerRegister />
+        <Footer />
       </body>
     </QwikCityProvider>
   );
